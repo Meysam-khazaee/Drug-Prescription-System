@@ -1,0 +1,5 @@
+Omeprazole,5,1,10
+Onpattro,5,1,10
+Otezla,5,1,10
+Ozempic,5,1,10
+Pantoprazole,5,1,10
