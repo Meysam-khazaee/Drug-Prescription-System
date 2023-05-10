@@ -1,0 +1,5 @@
+Hydrochlorothiazide,5,1,10
+Hydroxychloroquine,5,1,10
+Ibuprofen,5,1,10
+Imbruvica,5,1,10
+Invokana,5,1,10
