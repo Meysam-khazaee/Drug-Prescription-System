@@ -65,3 +65,6 @@ Viagra,5,1,10
 Wellbutrin,5,1,10
 Xanax,5,1,10
 Zubsolv,5,1,10
+xxxx,0.3,12.0,0.0
+aaa,7.0,14.0,0.0
+dd,5.0,6.0,4.0

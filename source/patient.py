@@ -41,7 +41,7 @@ class Patient:
             os.system("cls")
             print("\n---------- Searched Patient Account ----------")
             self.show_patient_account(index)
-            getch()
+            time.sleep(2)
             return True
         else:
             print("\n\tPatient with this National Code Not Exist.")
@@ -59,7 +59,7 @@ class Patient:
             print("\n")
             self.show_patient_account(index)
             print("\n\tPatient Account Edited Successfully.")
-            getch()
+            time.sleep(2)
             return True
         else:
             print("\n\tPatient with this National Code Not Exist.")
