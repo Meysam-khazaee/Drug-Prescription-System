@@ -2,7 +2,7 @@ import os
 import time
 
 from source.doctor import Doctor
-from source.medicine import Medicine
+from source.drug import Drug
 from source.patient import Patient
 from source.visit import Visit
 from msvcrt import getch
@@ -45,7 +45,7 @@ class Login:
                         print('\n---------------- Welcome Drug Prescription System ----------------\n')
                         print("Hi Doctor < %s, %s > :" % (
                             self.logged_doctor.d_name, self.logged_doctor.d_lastname))
-                        print("\n\t1.Patient Management\n\t2.Medicine Management\n\t3.Patient Visit\n\t4.Logout")
+                        print("\n\t1.Patient Management\n\t2.Drug Management\n\t3.Patient Visit\n\t4.Logout")
                         ans = input("\n\tWhat would you like to do? ")
                         if ans == "1":
 
@@ -96,47 +96,47 @@ class Login:
 
                             else:
                                 print('\n\tInvalid Choice Try Again.')
-                                time.sleep(1.5)
+                                time.sleep(2)
 
                         elif ans == "2":
                             os.system('cls')
-                            print('\n---------------- Medicine Panel ----------------\n')
+                            print('\n---------------- Drug Panel ----------------\n')
                             print(
-                                "\t1.Add Medicine info\n\t2.Edit Medicine info\n\t3.Search Medicine "
-                                "info\n\t4.Delete Medicine info\n\t5.Back")
+                                "\t1.Add Drug info\n\t2.Edit Drug info\n\t3.Search Drug "
+                                "info\n\t4.Delete Drug info\n\t5.Back")
                             ch = input("\n\tWhat would you like to do? ")
 
-                            med = Medicine(self.database.medicines_list)
+                            drug = Drug(self.database.drugs_list)
 
                             if ch == "1":
                                 os.system('cls')
-                                print('\n---------------- Add Medicine ----------------\n')
-                                name = input("\n\tMedicine name = ")
-                                dos = float(input("\tMedicine dos = "))
-                                max_dos = float(input("\tMedicine Max-Dos = "))
-                                min_dos = float(input("\tMedicine Min-Dos = "))
-                                med.add_medicine(name, dos, max_dos, min_dos)
+                                print('\n---------------- Add Drug ----------------\n')
+                                name = input("\n\tDrug name = ")
+                                dos = float(input("\tDrug dos = "))
+                                max_dos = float(input("\tDrug Max-Dos = "))
+                                min_dos = float(input("\tDrug Min-Dos = "))
+                                drug.add_drug(name, dos, max_dos, min_dos)
                                 self.database.save_database()
 
                             elif ch == "2":
                                 os.system('cls')
-                                print('\n---------------- Edit Medicine ----------------\n')
-                                name = input("\n\tEnter Medicine Name = ")
-                                newname = input("\tMedicine New name = ")
-                                dos = float(input("\tMedicine New dos = "))
-                                max_dos = float(input("\tMedicine New Max-Dos = "))
-                                min_dos = float(input("\tMedicine New Min-Dos = "))
-                                med.edit_medicine(name, newname, dos, max_dos, min_dos)
+                                print('\n---------------- Edit Drug ----------------\n')
+                                name = input("\n\tEnter Drug Name = ")
+                                newname = input("\tDrug New name = ")
+                                dos = float(input("\tDrug New dos = "))
+                                max_dos = float(input("\tDrug New Max-Dos = "))
+                                min_dos = float(input("\tDrug New Min-Dos = "))
+                                drug.edit_drug(name, newname, dos, max_dos, min_dos)
                                 self.database.save_database()
 
                             elif ch == "3":
                                 os.system("cls")
-                                print("\n---------- Searched Medicine Information ----------")
-                                med.search_medicine(input("\n\tEnter Medicine Name = "))
+                                print("\n---------- Searched Drug Information ----------")
+                                drug.search_drug(input("\n\tEnter Drug Name = "))
                                 self.database.save_database()
 
                             elif ch == "4":
-                                med.delete_medicine(input("\n\tEnter Medicine Name = "))
+                                drug.delete_drug(input("\n\tEnter Drug Name = "))
                                 self.database.save_database()
 
                             elif ch == "5":
@@ -144,11 +144,11 @@ class Login:
 
                             else:
                                 print('\n\tInvalid Choice Try Again.\n')
-                                time.sleep(1.5)
+                                time.sleep(2)
 
                         elif ans == "3":
                             os.system('cls')
-                            patient_medicine_list = []
+                            patient_drug_list = []
                             print('\n-------------------------- Visit Panel --------------------------\n')
                             patient_national_code = input("\tEnter National Code = ")
                             p = Patient(self.database.patients_accounts)
@@ -160,19 +160,19 @@ class Login:
                                     self.database.patients_accounts[p.index_of_patient(patient_national_code)][1]))
 
                                 print(
-                                    "\t1.Select Medicine From Previous Prescriptions\n\t2.Select Medicine From "
-                                    "Medicines List\n\t3.Show And Confirm Current Prescriptions\n\t4.Back")
+                                    "\t1.Select Drug From Previous Prescriptions\n\t2.Select Drug From "
+                                    "Drugs List\n\t3.Show And Confirm Current Prescriptions\n\t4.Back")
                                 ch = input("\n\tWhat would you like to do? ")
-                                visit_obj = Visit(self.database.patients_accounts, self.database.medicines_list, patient_medicine_list)
+                                visit_obj = Visit(self.database.patients_accounts, self.database.drugs_list, patient_drug_list)
                                 if ch == "1":
-                                    patient_medicine_list.append(visit_obj.previous_prescriptions(patient_national_code))
+                                    patient_drug_list.append(visit_obj.previous_prescriptions(patient_national_code))
                                 elif ch == "2":
-                                    input_char = input("\n\tEnter First Character The Medicine You Want = ")
-                                    patient_medicine_list.append(visit_obj.prescribe_from_medicines_list(input_char))
+                                    input_char = input("\n\tEnter First Character The Drug You Want = ")
+                                    patient_drug_list.append(visit_obj.prescribe_from_drugs_list(input_char))
                                 elif ch == "3":
                                     os.system("cls")
                                     print("\n\t--------- Current Prescriptions ---------\n")
-                                    for med in patient_medicine_list:
+                                    for med in patient_drug_list:
                                         if med is not None:
                                             print("\t{}".format(med), end="")
                                     char = input("\n\tDo you want to finalize the prescription??(y,n) ")
@@ -185,7 +185,7 @@ class Login:
                                     break
                                 else:
                                     print('\n\tInvalid Choice Try Again.\n')
-                                    time.sleep(1.5)
+                                    time.sleep(2)
 
                         elif ans == "4":
                             os.system("cls")
@@ -193,17 +193,17 @@ class Login:
                             return 0
                         else:
                             print("\n\tNot Valid. Press a key and Try again")
-                            getch()
+                            time.sleep(2)
                 else:
                     print('\n\tInvalid Username Or Password.\n\tPlease Choose Again.')
-                    time.sleep(1.5)
+                    time.sleep(2)
 
             elif choose == "2":
                 os.system("cls")
                 print("\n\t<<  Hope to see you again.Goodbye  >>")
-                time.sleep(1.5)
+                time.sleep(2)
                 self.database.save_database()
                 return True
             else:
                 print('\n\tInvalid Choice.\n\tPlease Press a Key and Choose Again.')
-                getch()
+                time.sleep(2)

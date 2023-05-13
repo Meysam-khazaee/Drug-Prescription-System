@@ -20,16 +20,6 @@ def teardown():
 
 
 class TestPatient(object):
-
-    def test_exist_patient(self):
-        assert False
-
-    def test_create_new_patient_account(self):
-        assert False
-
-    def test_index_of_patient(self):
-        assert False
-
     search_patient_account_test_data = [
         (["4960011100"], True),
         (["3860601325"], True),
@@ -49,12 +39,6 @@ class TestPatient(object):
         search_result = patient_object.search_patient_account(test_input[0])
         assert search_result == expected
 
-    def test_edit_patient_account(self):
-        assert False
-
-    def test_show_patient_account(self):
-        assert False
-
     test_delete_patient_account_test_data = [
         (["3860601325"], True),
         (["4969053625"], True),
@@ -73,3 +57,21 @@ class TestPatient(object):
         patient_object = Patient(database.patients_accounts)
         delete_result = patient_object.delete_patient_account(test_input[0])
         assert delete_result == expected
+
+    # m.khazaee: this test must implement
+    def test_edit_patient_account(self):
+        assert False
+
+    def test_show_patient_account(self):
+        assert False
+
+    def test_exist_patient(self):
+        assert False
+
+    def test_create_new_patient_account(self):
+        assert False
+
+    def test_index_of_patient(self):
+        assert False
+
+    #######################################
